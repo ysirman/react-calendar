@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./front:/front
+    working_dir: /front
+    command: yarn start # npm がインストールされている前提 npm start / インストール前なら node としておく
+    tty: true
+    ports:
+      - 3000:3000
