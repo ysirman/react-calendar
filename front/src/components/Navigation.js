@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import AppContext from "../contexts/AppContext";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -12,6 +12,8 @@ import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounde
 import calendar_icon from "./calendar_icon.png";
 
 function Navigation() {
+  const { state } = useContext(AppContext);
+
   return (
     <>
       <AppBar position="static">
@@ -32,7 +34,12 @@ function Navigation() {
               <ArrowForwardIosRoundedIcon />
             </IconButton>
           </Box>
-          <Typography variant="h6">2020年6月</Typography>
+          <Typography variant="h6">
+            {state.calendar.selected.getFullYear() +
+              "年" +
+              (state.calendar.selected.getMonth() + 1) +
+              "月"}
+          </Typography>
         </Toolbar>
       </AppBar>
     </>
