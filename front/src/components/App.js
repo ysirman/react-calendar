@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Navigation from "./Navigation";
+import CalendarBoard from "./CalendarBoard";
 import AppContext from "../contexts/AppContext";
 import reducer from "../reducers";
 
@@ -14,6 +15,7 @@ function App() {
     <AppContext.Provider value={{ state, dispatch }}>
       <CssBaseline />
       <Navigation />
+      <CalendarBoard />
     </AppContext.Provider>
   );
 }

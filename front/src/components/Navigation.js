@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import AppContext from "../contexts/AppContext";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -13,9 +13,28 @@ import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import calendar_icon from "./calendar_icon.png";
 
+import {
+  SET_TODAY,
+  SET_LAST_MONTH,
+  SET_NEXT_MONTH,
+  SET_SELECTED_DATE,
+} from "../actions";
+
 function Navigation() {
-  const { state } = useContext(AppContext);
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const { state, dispatch } = useContext(AppContext);
+
+  function handleTodayClick() {
+    dispatch({ type: SET_TODAY });
+  }
+  function handleBackClick() {
+    dispatch({ type: SET_LAST_MONTH });
+  }
+  function handleForwardClick() {
+    dispatch({ type: SET_NEXT_MONTH });
+  }
+  function handleDateChange(date) {
+    dispatch({ type: SET_SELECTED_DATE, selectedDate: date });
+  }
 
   return (
     <>
@@ -28,18 +47,24 @@ function Navigation() {
             <img alt="calendar_icon" src={calendar_icon} width="50px" />
           </Box>
           <Typography variant="h6">カレンダー</Typography>
-          <Button color="inherit">今日</Button>
+          <Button color="inherit" onClick={handleTodayClick}>
+            今日
+          </Button>
           <Box>
-            <IconButton edge="start" color="inherit">
+            <IconButton edge="start" color="inherit" onClick={handleBackClick}>
               <ArrowBackIosRoundedIcon />
             </IconButton>
-            <IconButton edge="start" color="inherit">
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleForwardClick}
+            >
               <ArrowForwardIosRoundedIcon />
             </IconButton>
           </Box>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
-              value={selectedDate}
+              value={state.calendar.selected}
               onChange={handleDateChange}
               animateYearScrolling
               format="yyyy年M月"
