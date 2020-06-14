@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AppContext from "../contexts/AppContext";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -9,14 +9,17 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import calendar_icon from "./calendar_icon.png";
 
 function Navigation() {
   const { state } = useContext(AppContext);
+  const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" id="navigation">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />
@@ -34,12 +37,18 @@ function Navigation() {
               <ArrowForwardIosRoundedIcon />
             </IconButton>
           </Box>
-          <Typography variant="h6">
-            {state.calendar.selected.getFullYear() +
-              "年" +
-              (state.calendar.selected.getMonth() + 1) +
-              "月"}
-          </Typography>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DatePicker
+              value={selectedDate}
+              onChange={handleDateChange}
+              animateYearScrolling
+              format="yyyy年M月"
+              autoOk
+              InputProps={{
+                disableUnderline: true,
+              }}
+            />
+          </MuiPickersUtilsProvider>
         </Toolbar>
       </AppBar>
     </>
