@@ -13,3 +13,31 @@ body {
 #navigation .MuiInputBase-input:hover {
   cursor: pointer;
 }
+
+/**************************************
+ Calendar
+**************************************/
+.calendar-item {
+  border: 1px solid #ccc;
+  border-right: none;
+}
+/* 日〜土曜日 */
+.calendar-item:nth-child(n + 1):nth-child(-n + 7) {
+  border-bottom: none;
+}
+/* 曜日(7) + 1週間(7)*6行 = 49 */
+.calendar-item:nth-child(n + 8):nth-child(-n + 49) {
+  border-top: none;
+}
+.calendar-item:nth-child(7n) {
+  border-right: 1px solid #ccc;
+}
+
+.calendar-item .today {
+  display: inline-block;
+  line-height: 24px;
+  width: 24px;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #3f51b5;
+}
