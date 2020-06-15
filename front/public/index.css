@@ -41,3 +41,22 @@ body {
   border-radius: 50%;
   background-color: #3f51b5;
 }
+
+/**************************************
+ Schedule
+**************************************/
+.schedule-list {
+  margin-top: 3px;
+  padding-left: 4px;
+  overflow: scroll;
+}
+.schedule-item {
+  margin-bottom: 2px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background-color: #3f51b5;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
