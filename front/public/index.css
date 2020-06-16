@@ -32,6 +32,9 @@ body {
 .calendar-item:nth-child(7n) {
   border-right: 1px solid #ccc;
 }
+.calendar-item:nth-child(n + 8):nth-child(-n + 49):hover {
+  cursor: pointer;
+}
 
 .calendar-item .today {
   display: inline-block;
@@ -59,4 +62,40 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/**************************************
+ Schedule Form
+**************************************/
+.schedule-item:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.schedule-form .MuiPaper-root {
+  position: relative;
+}
+.schedule-form .MuiPaper-root .close-button {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+.schedule-form .MuiDialogContent-root {
+  width: 540px;
+  margin-top: 40px;
+}
+.schedule-form .MuiDialogContent-root > div {
+  height: 64px;
+  margin-top: 8px;
+}
+.schedule-form .MuiDialogContent-root > div:first-child {
+  height: auto;
+  margin-top: 0px;
+}
+.schedule-form .MuiDialogContent-root input {
+  width: 450px;
+}
+.schedule-form .MuiDialogContent-root > div:first-child input,
+.schedule-form .MuiDialogContent-root > div:first-child label {
+  font-size: 24px;
 }
