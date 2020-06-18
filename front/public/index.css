@@ -80,6 +80,11 @@ body {
   top: 3px;
   right: 3px;
 }
+.schedule-form .MuiPaper-root .delete-button {
+  position: absolute;
+  top: 3px;
+  right: 50px;
+}
 .schedule-form .MuiDialogContent-root {
   width: 540px;
   margin-top: 40px;

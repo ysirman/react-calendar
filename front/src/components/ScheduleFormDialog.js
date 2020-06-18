@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import CloseIcon from "@material-ui/icons/Close";
+import DeleteIcon from "@material-ui/icons/Delete";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import PlaceIcon from "@material-ui/icons/Place";
 import SubjectIcon from "@material-ui/icons/Subject";
@@ -20,6 +21,7 @@ import {
   SET_SELECTED_DATE,
   CREATE_SCHEDULE,
   UPDATE_SCHEDULE,
+  DELETE_SCHEDULE,
 } from "../actions";
 
 function ScheduleFormDialog() {
@@ -75,6 +77,33 @@ function ScheduleFormDialog() {
     });
   }
 
+  // スケジュール削除
+  function handleClickDeleteButton() {
+    dispatch({
+      type: DELETE_SCHEDULE,
+      id: params.id,
+    });
+    dispatch({
+      type: CHANGE_SCHEDULE_FORM_STATUS,
+      isOpen: false,
+    });
+  }
+
+  // 削除ボタンを表示（更新時のみ）
+  function deleteIconButton() {
+    if (params.id !== "") {
+      return (
+        <IconButton
+          className="delete-button"
+          aria-label="delete"
+          onClick={handleClickDeleteButton}
+        >
+          <DeleteIcon />
+        </IconButton>
+      );
+    }
+  }
+
   return (
     <Dialog
       className="schedule-form"
@@ -82,6 +111,7 @@ function ScheduleFormDialog() {
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
     >
+      {deleteIconButton()}
       <IconButton
         className="close-button"
         aria-label="close"

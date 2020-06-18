@@ -1,4 +1,4 @@
-import { CREATE_SCHEDULE, UPDATE_SCHEDULE } from "../actions";
+import { CREATE_SCHEDULE, UPDATE_SCHEDULE, DELETE_SCHEDULE } from "../actions";
 
 function schedule(state = [], action) {
   switch (action.type) {
@@ -32,6 +32,8 @@ function schedule(state = [], action) {
           detail: action.detail,
         },
       ];
+    case DELETE_SCHEDULE:
+      return state.filter((schedule) => schedule.id !== action.id);
     default:
       return state;
   }
